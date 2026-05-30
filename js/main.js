@@ -35,6 +35,15 @@
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
+  /* Enlaces a #inicio → scroll al tope real (el header sticky rompe el ancla nativa) */
+  document.querySelectorAll('a[href="#inicio"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (history.replaceState) history.replaceState(null, "", location.pathname + location.search);
+    });
+  });
+
   const toggle = $(".nav__toggle");
   const menu = $("#nav-menu");
   if (toggle && menu) {
@@ -141,20 +150,45 @@
       .filter((f) => f.pregunta);
   }
 
+  /* Cache local: la página carga al toque y aguanta si Google falla o no hay red. */
+  const CACHE_KEY = "faq_cache_v1";
+  function readCache() {
+    try {
+      const c = JSON.parse(localStorage.getItem(CACHE_KEY));
+      return Array.isArray(c) && c.length ? c : null;
+    } catch (e) {
+      return null;
+    }
+  }
+  function writeCache(data) {
+    try {
+      localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+    } catch (e) {
+      /* localStorage lleno o deshabilitado: no pasa nada */
+    }
+  }
+
   async function loadFaqs() {
     const cfg = window.FAQ_CONFIG || {};
-    if (cfg.sheetCsvUrl) {
-      try {
-        const res = await fetch(cfg.sheetCsvUrl, { cache: "no-store" });
-        if (res.ok) {
-          const data = rowsToFaqs(parseCSV(await res.text()));
-          if (data.length) return data;
+    const fallback = Array.isArray(window.FAQ_FALLBACK) ? window.FAQ_FALLBACK : [];
+    if (!cfg.sheetCsvUrl) return fallback;
+    try {
+      // Timeout para que un Google lento no deje la página "Cargando…" para siempre.
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 8000);
+      const res = await fetch(cfg.sheetCsvUrl, { cache: "no-store", signal: ctrl.signal });
+      clearTimeout(timer);
+      if (res.ok) {
+        const data = rowsToFaqs(parseCSV(await res.text()));
+        if (data.length) {
+          writeCache(data); // guardamos la última versión buena
+          return data;
         }
-      } catch (e) {
-        /* sin conexión / no publicado → fallback */
       }
+    } catch (e) {
+      /* sin conexión / no publicado / timeout → cae al cache o al fallback */
     }
-    return Array.isArray(window.FAQ_FALLBACK) ? window.FAQ_FALLBACK : [];
+    return readCache() || fallback;
   }
 
   function buildChips() {

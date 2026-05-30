@@ -20,7 +20,9 @@
 
 const FAQ_CONFIG = {
   // Pegá acá la URL del Sheet publicado como CSV. Si queda vacía, se usa el fallback.
-  sheetCsvUrl: "",
+  // Guía paso a paso: docs/GOOGLE-SHEETS.md
+  sheetCsvUrl:
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRg_gw11hTOAVuHIiR0cLn0CFZWXNv9FZqw39d_WoHPM-DqVKzcoqqoUDIRJsMgx9lfES34KRHpkXuo/pub?gid=0&single=true&output=csv",
   // Cuántas preguntas mostrar antes de que aparezca el contador "+N más" (informativo).
   // El buscador y las categorías filtran sobre TODAS de todos modos.
 };
