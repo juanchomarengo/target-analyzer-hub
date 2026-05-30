@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-30",
+  "title": "Design System: Hub Web Full Stack — UNPilar",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Azul UNPilar",
+        "canonical": "oklch(0.46 0.132 254)",
+        "tonalRamp": ["#000A4F", "#00296D", "#00468C", "#2364AC", "#4382CD", "#67A8F5", "#90D2FF", "#B3F6FF"]
+      },
+      "accent": {
+        "role": "secondary",
+        "displayName": "Cian Eléctrico",
+        "canonical": "oklch(0.74 0.13 220)",
+        "tonalRamp": ["#001C3D", "#00385A", "#005477", "#007296", "#0091B5", "#09B7DC", "#55E1FF", "#7FFFFF"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta Azul-Carbón",
+        "canonical": "oklch(0.27 0.035 254)",
+        "tonalRamp": ["#12161B", "#2A2E34", "#43484E", "#5F646A", "#7B8187", "#A0A5AC", "#C8CED6", "#ECF2FA"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Título del hero. Bricolage Grotesque, uno por página." },
+      "headline": { "displayName": "Headline", "purpose": "Títulos de sección (FAQ, Links, Equipo)." },
+      "body": { "displayName": "Body", "purpose": "Respuestas del FAQ y descripciones. Inter, máx 75ch." },
+      "label": { "displayName": "Label", "purpose": "Categorías, fechas, roles. JetBrains Mono." }
+    },
+    "shadows": [
+      { "name": "rest", "value": "0 1px 2px rgba(26,39,55,0.04)", "purpose": "Tarjetas y FAQ en reposo. Apenas un asentamiento." },
+      { "name": "hover", "value": "0 8px 28px rgba(21,88,159,0.12)", "purpose": "Hover en link-card y tarjeta de equipo. Sombra tintada de azul." },
+      { "name": "focus-glow", "value": "0 0 0 3px rgba(30,189,227,0.35)", "purpose": "Anillo de foco de teclado, en cian." }
+    ],
+    "motion": [
+      { "name": "ease-out-quart", "value": "cubic-bezier(0.25, 1, 0.5, 1)", "purpose": "Easing por defecto de hovers y transiciones de estado." },
+      { "name": "duration-fast", "value": "200ms", "purpose": "Hover de botones y links." },
+      { "name": "duration-accordion", "value": "300ms", "purpose": "Apertura/cierre del acordeón de FAQ." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón Primario",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción de confianza institucional (Ver FAQ, Ir al campus). Azul UNPilar con texto blanco.",
+      "html": "<button class=\"ds-btn-primary\">Ver FAQ</button>",
+      "css": ".ds-btn-primary { background: #15589F; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 1rem; padding: 14px 28px; border: none; border-radius: 999px; cursor: pointer; transition: background 200ms cubic-bezier(0.25,1,0.5,1), transform 200ms cubic-bezier(0.25,1,0.5,1); } .ds-btn-primary:hover { background: #00468C; transform: translateY(-2px); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(30,189,227,0.35); } @media (prefers-reduced-motion: reduce) { .ds-btn-primary { transition: background 200ms; } .ds-btn-primary:hover { transform: none; } }"
+    },
+    {
+      "name": "Botón Acento",
+      "kind": "button",
+      "refersTo": "button-accent",
+      "description": "CTA que llama la atención (Unite al grupo). Cian con texto tinta. Uno por vista.",
+      "html": "<button class=\"ds-btn-accent\">Unite al grupo</button>",
+      "css": ".ds-btn-accent { background: #1EBDE3; color: #1A2737; font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 1rem; padding: 14px 28px; border: none; border-radius: 999px; cursor: pointer; transition: background 200ms cubic-bezier(0.25,1,0.5,1), transform 200ms cubic-bezier(0.25,1,0.5,1); } .ds-btn-accent:hover { background: #09B7DC; transform: translateY(-2px); } .ds-btn-accent:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(21,88,159,0.35); } @media (prefers-reduced-motion: reduce) { .ds-btn-accent:hover { transform: none; } }"
+    },
+    {
+      "name": "Botón Ghost",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Acción secundaria. Superficie con borde y texto azul.",
+      "html": "<button class=\"ds-btn-ghost\">Ver más</button>",
+      "css": ".ds-btn-ghost { background: #FFFFFF; color: #15589F; font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 1rem; padding: 14px 28px; border: 1px solid #15589F; border-radius: 999px; cursor: pointer; transition: background 200ms cubic-bezier(0.25,1,0.5,1); } .ds-btn-ghost:hover { background: #F8FAFD; } .ds-btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(30,189,227,0.35); }"
+    },
+    {
+      "name": "Ítem de FAQ",
+      "kind": "custom",
+      "refersTo": "faq-item",
+      "description": "Acordeón, componente firma del hub. Pregunta clickeable con badge de categoría mono y respuesta desplegable.",
+      "html": "<div class=\"ds-faq\"><button class=\"ds-faq-q\" aria-expanded=\"false\"><span class=\"ds-faq-cat\">entregas</span><span class=\"ds-faq-title\">¿Cuándo se entrega el proyecto final?</span><svg class=\"ds-faq-chev\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M6 9l6 6 6-6\"/></svg></button></div>",
+      "css": ".ds-faq { background: #FFFFFF; border: 1px solid #DADEE3; border-radius: 14px; box-shadow: 0 1px 2px rgba(26,39,55,0.04); } .ds-faq-q { display: flex; align-items: center; gap: 12px; width: 100%; padding: 20px 24px; background: none; border: none; cursor: pointer; text-align: left; color: #1A2737; } .ds-faq-cat { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.02em; color: #0091B5; background: rgba(30,189,227,0.15); padding: 3px 10px; border-radius: 999px; white-space: nowrap; } .ds-faq-title { font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 1.125rem; flex: 1; } .ds-faq-chev { color: #5F6A77; transition: transform 300ms cubic-bezier(0.25,1,0.5,1); flex-shrink: 0; } .ds-faq-q[aria-expanded=\"true\"] .ds-faq-title { color: #15589F; } .ds-faq-q[aria-expanded=\"true\"] .ds-faq-chev { transform: rotate(180deg); } .ds-faq-q:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(30,189,227,0.35); border-radius: 14px; }"
+    },
+    {
+      "name": "Link Card",
+      "kind": "card",
+      "refersTo": "link-card",
+      "description": "Tarjeta de recurso/link importante (campus, repo, calendario). Hover eleva y tiñe la flecha de cian.",
+      "html": "<a class=\"ds-link-card\" href=\"#\"><span class=\"ds-link-title\">Campus Virtual</span><span class=\"ds-link-desc\">Material, foros y entregas de las 4 comisiones.</span><svg class=\"ds-link-arrow\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M7 17L17 7M17 7H7M17 7v10\"/></svg></a>",
+      "css": ".ds-link-card { display: block; position: relative; background: #FFFFFF; border: 1px solid #DADEE3; border-radius: 22px; padding: 24px; text-decoration: none; color: #1A2737; box-shadow: 0 1px 2px rgba(26,39,55,0.04); transition: box-shadow 200ms cubic-bezier(0.25,1,0.5,1), transform 200ms cubic-bezier(0.25,1,0.5,1); } .ds-link-card:hover { box-shadow: 0 8px 28px rgba(21,88,159,0.12); transform: translateY(-3px); } .ds-link-title { display: block; font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 1.25rem; margin-bottom: 6px; } .ds-link-desc { display: block; font-family: Inter, system-ui, sans-serif; font-size: 0.9375rem; line-height: 1.5; color: #5F6A77; } .ds-link-arrow { position: absolute; top: 24px; right: 24px; color: #DADEE3; transition: color 200ms; } .ds-link-card:hover .ds-link-arrow { color: #1EBDE3; } .ds-link-card:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(30,189,227,0.35); } @media (prefers-reduced-motion: reduce) { .ds-link-card:hover { transform: none; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El campus que sí entendés",
+    "overview": "El azul institucional de UNPilar dice 'esto es oficial y confiable'; un cian eléctrico dice 'pero relajá, lo hizo gente que cursó lo mismo que vos'. El sistema vive en esa tensión entre la seriedad de la marca y la calidez de un compañero que ya pasó por acá. Densidad media-baja, mucho aire, jerarquía clarísima: el alumno resuelve su duda en tres segundos. Toma la pulcritud y las microinteracciones de Linear/Vercel pero las baja a un registro humano y juvenil.",
+    "keyCharacteristics": [
+      "Azul UNPilar institucional como ancla de confianza, cian eléctrico como chispa juvenil.",
+      "Mucho aire y radios generosos (pill en botones, 22px en tarjetas).",
+      "Jerarquía agresiva: el alumno escanea, no lee.",
+      "Tono de compañero, no de oficina de alumnos. Tutea.",
+      "Movimiento sutil y con propósito, siempre con alternativa prefers-reduced-motion."
+    ],
+    "rules": [
+      { "name": "La Regla del Cian Raro", "body": "El cian eléctrico aparece en ≤15% de cualquier pantalla. Es un acento, no un fondo. Su rareza es lo que lo hace eléctrico.", "section": "colors" },
+      { "name": "La Regla Blanco-sobre-Cian Prohibido", "body": "Texto blanco sobre cian da 2.22:1: ilegible. Sobre cian siempre va tinta (#1A2737).", "section": "colors" },
+      { "name": "La Regla del Azul-No-Frío", "body": "El azul nunca ocupa una pantalla entera sin cian, radio generoso o tipografía display. Azul puro y solo = la intranet vieja que evitamos.", "section": "colors" },
+      { "name": "La Regla de la Línea Cómoda", "body": "El cuerpo de texto nunca pasa de 75 caracteres por línea.", "section": "typography" },
+      { "name": "La Regla Sin Eyebrow", "body": "Prohibido el rótulo en mayúsculas con tracking ancho sobre cada sección.", "section": "typography" },
+      { "name": "La Regla Plano-por-Defecto", "body": "La sombra es premio al hover/foco, no estado base. Reposo = 0 1px 2px como mucho.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do usar el azul #15589F exacto del logo como ancla institucional, y reservar el cian #1EBDE3 para ≤15% de la pantalla.",
+      "Do poner siempre texto tinta (#1A2737) sobre superficies cian; blanco sobre cian está prohibido.",
+      "Do mantener el texto secundario en #5F6A77 o más oscuro; nunca un gris más claro por elegancia.",
+      "Do usar radios generosos y mucho aire para sostener el tono cercano.",
+      "Do dar al acordeón de FAQ semántica real (button, aria-expanded, foco visible).",
+      "Do acompañar siempre el azul con cian, radio o tipografía display."
+    ],
+    "donts": [
+      "Don't caer en el look de intranet universitaria de los 2000: grilla gris, menús infinitos, tablas apretadas.",
+      "Don't volverlo corporativo y frío: azul-marino-y-gris genérico, copy impersonal.",
+      "Don't que parezca template de Bootstrap/Wix.",
+      "Don't usar texto en gradiente, side-stripe borders, ni glassmorphism decorativo.",
+      "Don't poner un eyebrow en mayúsculas con tracking ancho sobre cada sección.",
+      "Don't usar fondo cream/sand/beige; el fondo es casi-blanco con tinte azul.",
+      "Don't dejar sombras grises oscuras en reposo."
+    ]
+  }
+}

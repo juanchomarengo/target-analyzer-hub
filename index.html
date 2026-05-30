@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Desarrollo Web Full Stack · UNPilar</title>
+  <meta name="description" content="Hub del Management Team: todo sobre el proyecto final Target Analyzer. Preguntas frecuentes, links importantes y el equipo que acompaña a las 4 comisiones de Desarrollo Web Full Stack de la Universidad Nacional de Pilar." />
+  <meta name="theme-color" content="#15589F" />
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg" />
+
+  <!-- Marca el documento como "con JS" cuanto antes (para las animaciones de reveal) -->
+  <script>document.documentElement.classList.replace("no-js", "js");</script>
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="nav" id="inicio">
+    <div class="nav__inner">
+      <a class="brand" href="#inicio" aria-label="Desarrollo Web Full Stack — Universidad Nacional de Pilar">
+        <img class="brand__logo" src="public/brand/unpilar-logo-azul.png" alt="Universidad Nacional de Pilar" />
+        <span class="brand__divider" aria-hidden="true"></span>
+        <span class="brand__name">Desarrollo Web Full&nbsp;Stack</span>
+      </a>
+
+      <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav__menu" id="nav-menu" aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#faq">Preguntas</a>
+        <a href="#links">Links</a>
+        <a href="#equipo">Equipo</a>
+        <a class="btn btn--primary btn--sm" href="#contacto">Contactanos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="hero__aurora" aria-hidden="true">
+        <span class="blob blob--cian"></span>
+        <span class="blob blob--azul"></span>
+        <span class="blob blob--mid"></span>
+      </div>
+
+      <div class="hero__content reveal">
+        <span class="badge">
+          <span class="badge__dot" aria-hidden="true"></span>
+          Desarrollo Web Full Stack · UNPilar
+        </span>
+        <h1 class="hero__title">Todo sobre el<br />Target Analyzer.</h1>
+        <p class="hero__subtitle">
+          Preguntas frecuentes, links importantes y el Management Team que acompaña a tu
+          grupo durante todo el proyecto, en las 4 comisiones.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#faq">Ver preguntas frecuentes</a>
+          <a class="btn btn--ghost" href="#links">Explorar links</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EQUIPO ===================== -->
+    <section class="section section--surface equipo" id="equipo">
+      <header class="section__head reveal">
+        <h2 class="section__title">El equipo que te acompaña</h2>
+        <p class="section__sub">
+          Un solo profe para las 4 comisiones, y el Management Team como puente entre la
+          cátedra y tu grupo.
+        </p>
+      </header>
+
+      <div class="prof reveal">
+        <div class="avatar avatar--prof">
+          <img src="public/profile-pictures/alejandro-estayno.jpeg" alt="Foto de Alejandro Estayno" loading="lazy" />
+        </div>
+        <p class="prof__name">Alejandro Estayno</p>
+        <p class="prof__role">Profesor a cargo</p>
+      </div>
+
+      <ul class="team reveal">
+        <li class="member">
+          <div class="avatar"><img src="public/profile-pictures/juancho.webp" alt="Foto de Juancho" loading="lazy" /></div>
+          <p class="member__name">Juancho</p>
+          <p class="member__role">Management Team</p>
+        </li>
+        <li class="member">
+          <div class="avatar"><img src="public/profile-pictures/berty.webp" alt="Foto de Berty" loading="lazy" /></div>
+          <p class="member__name">Berty</p>
+          <p class="member__role">Management Team</p>
+        </li>
+        <li class="member">
+          <div class="avatar"><img src="public/profile-pictures/ale.webp" alt="Foto de Ale" loading="lazy" /></div>
+          <p class="member__name">Ale</p>
+          <p class="member__role">Management Team</p>
+        </li>
+        <li class="member">
+          <div class="avatar"><img src="public/profile-pictures/fabiola.webp" alt="Foto de Fabi" loading="lazy" /></div>
+          <p class="member__name">Fabi</p>
+          <p class="member__role">Management Team</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="section faq" id="faq">
+      <header class="section__head reveal">
+        <h2 class="section__title">Preguntas frecuentes</h2>
+        <p class="section__sub">Buscá por texto o filtrá por categoría. Las respuestas las mantiene el equipo.</p>
+      </header>
+
+      <div class="faq__controls reveal">
+        <div class="search">
+          <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input class="search__input" id="faq-search" type="search" placeholder="Buscá tu pregunta…" aria-label="Buscar en las preguntas frecuentes" autocomplete="off" />
+        </div>
+        <div class="chips" id="faq-chips" role="group" aria-label="Filtrar por categoría"></div>
+      </div>
+
+      <div class="faq__list" id="faq-list" aria-live="polite"></div>
+      <p class="faq__count" id="faq-count" aria-live="polite"></p>
+    </section>
+
+    <!-- ===================== LINKS ===================== -->
+    <section class="section section--surface links" id="links">
+      <header class="section__head reveal">
+        <h2 class="section__title">Links importantes</h2>
+        <p class="section__sub">Todo lo que usás en la cursada, a un clic.</p>
+      </header>
+      <div class="links__grid reveal" id="links-grid"></div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer" id="contacto">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img class="footer__logo" src="public/brand/unpilar-logo-blanco.png" alt="Universidad Nacional de Pilar" />
+        <p class="footer__tag">
+          El hub de la materia, hecho por el Management Team para acompañar a las 4 comisiones.
+        </p>
+      </div>
+      <div class="footer__contact">
+        <p class="footer__label">Escribinos</p>
+        <ul>
+          <li><span>Juancho</span><a href="mailto:">mail pendiente</a></li>
+          <li><span>Berty</span><a href="mailto:">mail pendiente</a></li>
+          <li><span>Ale</span><a href="mailto:">mail pendiente</a></li>
+          <li><span>Fabi</span><a href="mailto:">mail pendiente</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      © <span id="year"></span> Universidad Nacional de Pilar · Desarrollo Web Full Stack
+    </div>
+  </footer>
+
+  <script src="data/faq.js"></script>
+  <script src="data/links.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
