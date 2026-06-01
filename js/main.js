@@ -79,6 +79,41 @@
     reveals.forEach((el) => el.classList.add("in"));
   }
 
+  /* ===================== Demo (YouTube facade) ===================== */
+  /* La portada es un skeleton hecho con CSS (sin imágenes externas); el
+     iframe de YouTube se inyecta recién al hacer click, así la página
+     carga liviana y sin rastreadores hasta que el usuario decide verlo.
+     Los datos editables (video, URL falsa, duración) viven en data/demo.js. */
+  const facade = $(".video-facade");
+  const demo = window.DEMO_CONFIG || {};
+  if (facade && demo.videoId) {
+    // Rellenamos los textos desde la config (el título/bajada también viven
+    // en el HTML como respaldo para SEO y por si el JS no corre).
+    const setText = (sel, value) => {
+      const el = $(sel);
+      if (el && value) el.textContent = value;
+    };
+    setText("#demo-title", demo.title);
+    setText("#demo-subtitle", demo.subtitle);
+    setText("#demo-url", demo.fakeUrl);
+    setText("#demo-duration", demo.duration);
+
+    facade.addEventListener("click", () => {
+      const iframe = document.createElement("iframe");
+      iframe.src =
+        "https://www.youtube-nocookie.com/embed/" + demo.videoId +
+        "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+      iframe.title = "Demo del Target Analyzer";
+      iframe.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+      // Reemplazamos todo el viewport (skeleton + botón) por el reproductor.
+      const skeleton = facade.parentNode.querySelector(".app-skeleton");
+      if (skeleton) skeleton.remove();
+      facade.replaceWith(iframe);
+    });
+  }
+
   /* ===================== Links ===================== */
   const linksGrid = $("#links-grid");
   if (linksGrid && Array.isArray(window.LINKS)) {

@@ -36,6 +36,7 @@
 
       <nav class="nav__menu" id="nav-menu" aria-label="Navegación principal">
         <a href="#inicio">Inicio</a>
+        <a href="#demo">Demo</a>
         <a href="#faq">Preguntas</a>
         <a href="#links">Links</a>
         <a href="#equipo">Equipo</a>
@@ -67,6 +68,59 @@
           <a class="btn btn--primary" href="#faq">Ver preguntas frecuentes</a>
           <a class="btn btn--ghost" href="#links">Explorar links</a>
         </div>
+      </div>
+    </section>
+
+    <!-- ===================== DEMO ===================== -->
+    <section class="section demo" id="demo">
+      <div class="demo__aurora" aria-hidden="true">
+        <span class="blob blob--cian"></span>
+      </div>
+
+      <header class="section__head reveal">
+        <h2 class="section__title" id="demo-title">Mirá el Target Analyzer en acción</h2>
+        <p class="section__sub" id="demo-subtitle">30 segundos para ver lo que tu grupo va a construir.</p>
+      </header>
+
+      <div class="demo__stage reveal">
+        <figure class="browser">
+          <div class="browser__bar">
+            <span class="browser__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="browser__url" id="demo-url"></span>
+          </div>
+          <div class="browser__viewport">
+            <div class="app-skeleton" aria-hidden="true">
+              <div class="app-skeleton__side">
+                <span class="sk sk-dot"></span>
+                <span class="sk sk-bar"></span>
+                <span class="sk sk-bar"></span>
+                <span class="sk sk-bar"></span>
+                <span class="sk sk-bar"></span>
+              </div>
+              <div class="app-skeleton__main">
+                <span class="sk sk-bar sk-bar--title"></span>
+                <div class="app-skeleton__row">
+                  <span class="sk sk-card"></span>
+                  <span class="sk sk-card"></span>
+                  <span class="sk sk-card"></span>
+                </div>
+                <span class="sk sk-bar sk-bar--wide"></span>
+                <div class="app-skeleton__chart">
+                  <span class="sk"></span><span class="sk"></span><span class="sk"></span>
+                  <span class="sk"></span><span class="sk"></span><span class="sk"></span>
+                  <span class="sk"></span><span class="sk"></span>
+                </div>
+              </div>
+            </div>
+            <button class="video-facade" type="button"
+                    aria-label="Reproducir el video del Target Analyzer (30 segundos)">
+              <span class="video-facade__play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+              <span class="video-facade__duration" id="demo-duration" aria-hidden="true"></span>
+            </button>
+          </div>
+        </figure>
       </div>
     </section>
 
@@ -167,6 +221,7 @@
 
   <script src="data/faq.js"></script>
   <script src="data/links.js"></script>
+  <script src="data/demo.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
