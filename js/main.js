@@ -143,7 +143,7 @@
   const countEl = $("#faq-count");
 
   let allFaqs = [];
-  let activeCat = "Todas";
+  let activeCat = "";
   let term = "";
 
   /* CSV parser (soporta comillas, comas y saltos de línea dentro de celdas) */
@@ -227,10 +227,12 @@
   }
 
   function buildChips() {
-    const cats = ["Todas"];
+    const cats = [];
     allFaqs.forEach((f) => {
       if (cats.indexOf(f.categoria) === -1) cats.push(f.categoria);
     });
+    // Sin "Todas": la categoría por defecto es la primera real.
+    if (!activeCat || cats.indexOf(activeCat) === -1) activeCat = cats[0] || "";
     chipsEl.innerHTML = cats
       .map(
         (c) =>
@@ -240,10 +242,20 @@
       .join("");
   }
 
+  // Marca la categoría activa, salvo que haya una búsqueda en curso (modo global).
+  function syncChips() {
+    if (!chipsEl) return;
+    const searching = !!norm(term);
+    Array.prototype.forEach.call(chipsEl.children, (c) =>
+      c.setAttribute("aria-pressed", String(!searching && c.getAttribute("data-cat") === activeCat))
+    );
+  }
+
   function getFiltered() {
     const t = norm(term);
     return allFaqs.filter((f) => {
-      const okCat = activeCat === "Todas" || f.categoria === activeCat;
+      // Con búsqueda activa, el buscador filtra en TODAS las categorías.
+      const okCat = t ? true : f.categoria === activeCat;
       const okText = !t || norm(f.pregunta + " " + f.respuesta).indexOf(t) !== -1;
       return okCat && okText;
     });
@@ -268,6 +280,7 @@
         .join("");
     }
     // contador
+    syncChips();
     const total = allFaqs.length;
     if (!total) countEl.textContent = "";
     else if (items.length === total) countEl.textContent = total + (total === 1 ? " pregunta" : " preguntas");
@@ -295,9 +308,9 @@
         const btn = e.target.closest(".chip");
         if (!btn) return;
         activeCat = btn.getAttribute("data-cat");
-        Array.prototype.forEach.call(chipsEl.children, (c) =>
-          c.setAttribute("aria-pressed", String(c === btn))
-        );
+        // Elegir una categoría sale del modo búsqueda global.
+        if (searchEl) searchEl.value = "";
+        term = "";
         renderList();
       });
     }
